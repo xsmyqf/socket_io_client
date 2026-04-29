@@ -1,0 +1,237 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0f1115;
+    color: #e4e7ea;
+}
+
+.wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.col-nav {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+}
+
+.feature-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    background: #161a22;
+    border: 1px solid #242a37;
+    border-radius: 10px;
+}
+
+.feature-nav a {
+    display: block;
+    color: #c7d2e3;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: #1c2330;
+        border-color: #335dff;
+        color: #ffffff;
+    }
+}
+
+.col-main {
+    min-width: 0;
+}
+
+.col-right {
+    position: sticky;
+    top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: calc(100vh - 40px);
+}
+
+.col-right .logs {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+.col-right .logs .log-scroll {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: none;
+}
+
+@media (max-width: 1200px) {
+    .layout {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    .col-right {
+        grid-column: 1 / -1;
+        position: static;
+        height: auto;
+    }
+}
+
+@media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; }
+    .col-nav, .col-right { position: static; }
+}
+
+.dim { color: #6b7a90; font-size: 13px; margin: 0; }
+
+.page-intro {
+    margin: 0 0 20px;
+    color: #9fb0c8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+h1 {
+    margin: 0 0 24px;
+    font-size: 22px;
+    border-bottom: 1px solid #273041;
+    padding-bottom: 12px;
+}
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: #9bb0d1;
+    font-weight: 600;
+}
+
+.status ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 24px;
+
+    li { font-size: 13px; color: #c9d2de; }
+    b { color: #ffd78a; font-weight: 600; }
+}
+
+.anchor-section {
+    scroll-margin-top: 20px;
+}
+
+.panel {
+    background: #161a22;
+    border: 1px solid #242a37;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0;
+}
+
+.panel-desc {
+    margin: 0 0 12px;
+    color: #b9c6d6;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.field-list {
+    margin: 10px 0 12px;
+    padding-left: 18px;
+    color: #c9d2de;
+    font-size: 13px;
+
+    li { margin: 6px 0; }
+    b { color: #ffd78a; }
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input[type="text"], input[type="number"] {
+    background: #0b0d12;
+    border: 1px solid #2a3142;
+    color: #e4e7ea;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    min-width: 60px;
+}
+
+input[type="number"] { width: 90px; }
+input[type="text"] { flex: 1 1 220px; }
+
+button {
+    background: #335dff;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: pointer;
+
+    &:hover { background: #4a6fff; }
+    &:active { background: #2848d1; }
+}
+
+.result pre, .log-scroll {
+    background: #0b0d12;
+    border: 1px solid #242a37;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #b9c6d6;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 320px;
+    overflow-y: auto;
+    margin: 0;
+}
+
+.code-block {
+    background: #0b0d12;
+    border: 1px solid #2d3648;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 0;
+    color: #d5e0ee;
+    font-size: 12px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+}
+
+.log-scroll {
+    min-height: 420px;
+    max-height: calc(100vh - 120px);
+}
+
+section { margin-bottom: 16px; }
+
+label { font-size: 13px; color: #9bb0d1; }

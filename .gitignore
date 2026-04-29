@@ -1,0 +1,8 @@
+target
+.claude
+.vscode
+uploads
+test.zip
+client.log
+server.log
+debug.log

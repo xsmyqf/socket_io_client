@@ -1,0 +1,73 @@
+[package]
+name = "server_test"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# --- Leptos 核心（浏览器 + 服务端均需） ---
+leptos = { version = "0.8", features = ["nightly"] }
+leptos_meta = { version = "0.8" }
+leptos_router = { version = "0.8", features = ["nightly"] }
+console_error_panic_hook = "0.1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+wasm-bindgen = "0.2"
+futures = "0.3"
+http = "1"
+thiserror = "1"
+web-sys = { version = "0.3", features = ["Window"] }
+js-sys = "0.3"
+serde-wasm-bindgen = "0.6"
+
+# --- 仅 SSR 才用到的（浏览器端不会编译进 wasm） ---
+leptos_axum = { version = "0.8", optional = true }
+axum = { version = "0.8", optional = true }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal", "time", "sync", "fs"], optional = true }
+tower = { version = "0.5", optional = true }
+tower-http = { version = "0.6", features = ["fs"], optional = true }
+socketioxide = { version = "0.18.3", features = ["state", "tracing"], optional = true }
+
+tracing = { version = "0.1", optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+bytes = { version = "1", optional = true }
+tokio-stream = { version = "0.1", features = ["sync"], optional = true }
+
+[features]
+default = ["ssr"]
+hydrate = ["leptos/hydrate"]
+ssr = [
+    "dep:leptos_axum",
+    "dep:axum",
+    "dep:tokio",
+    "dep:tower",
+    "dep:tower-http",
+    "dep:socketioxide",
+
+    "dep:tracing",
+    "dep:tracing-subscriber",
+    "dep:bytes",
+    "dep:tokio-stream",
+    "leptos/ssr",
+    "leptos_meta/ssr",
+    "leptos_router/ssr",
+]
+
+[package.metadata.leptos]
+output-name = "server_test"
+site-root = "target/site"
+site-pkg-dir = "pkg"
+style-file = "style/main.scss"
+assets-dir = "public"
+site-addr = "0.0.0.0:3000"
+reload-port = 3001
+browserquery = "defaults"
+watch = false
+env = "DEV"
+bin-features = ["ssr"]
+bin-default-features = false
+lib-features = ["hydrate"]
+lib-default-features = false

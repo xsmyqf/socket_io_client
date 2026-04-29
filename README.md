@@ -152,6 +152,7 @@ if let Err(e) = s.emit_binary_with_ack(
    cd examples/server_test
    cargo leptos watch
    ```
+  ![server_start](./doc/images/server.png)
 2. 等待服务端启动完成（约 3 秒）。
 3. 新开一个终端，进入客户端目录并启动客户端：
    ```bash
